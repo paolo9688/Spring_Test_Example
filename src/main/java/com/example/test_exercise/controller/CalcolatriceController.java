@@ -29,6 +29,10 @@ public class CalcolatriceController {
 
     @GetMapping("/div")
     public Double getDiv(@RequestParam Double a, @RequestParam Double b) {
+        if (b == 0) {
+            throw new ArithmeticException("Division by zero!");
+        }
+
         Double div = a / b;
         return div;
     }

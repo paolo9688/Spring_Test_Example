@@ -52,4 +52,23 @@ class TestExerciseApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string("8"));
 	}
+
+	@Test
+	public void divTest() throws Exception{
+		this.mockMvc.perform(get("/api/calcolatrice/div")
+						.param("a", "4.0")
+						.param("b", "2.0"))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andExpect(content().string("2.0"));
+	}
+
+	@Test
+	public void divByZeroTest() throws Exception {
+		mockMvc.perform(get("/api/calcolatrice/div")
+						.param("numeratore", "4.0")
+						.param("denominatore", "0.0"))
+				.andDo(print())
+				.andExpect(status().isBadRequest());
+	}
 }
