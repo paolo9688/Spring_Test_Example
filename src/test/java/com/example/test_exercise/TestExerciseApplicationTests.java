@@ -42,4 +42,14 @@ class TestExerciseApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string("2"));
 	}
+
+	@Test
+	public void multipTest() throws Exception{
+		this.mockMvc.perform(get("/api/calcolatrice/multip")
+						.param("a", "4")
+						.param("b", "2"))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andExpect(content().string("8"));
+	}
 }
