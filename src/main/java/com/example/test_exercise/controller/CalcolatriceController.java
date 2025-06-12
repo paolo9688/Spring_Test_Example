@@ -1,5 +1,6 @@
 package com.example.test_exercise.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,13 +29,12 @@ public class CalcolatriceController {
     }
 
     @GetMapping("/div")
-    public Double getDiv(@RequestParam Double a, @RequestParam Double b) {
+    public ResponseEntity<Double> getDiv(@RequestParam Double a, @RequestParam Double b) {
         if (b == 0) {
-            throw new ArithmeticException("Division by zero!");
+            return ResponseEntity.badRequest().build();
         }
 
-        Double div = a / b;
-        return div;
+        return ResponseEntity.ok(a/b);
     }
 
     @GetMapping("/pow")
